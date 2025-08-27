@@ -1,0 +1,6 @@
+# GitHub Pages configuration
+# This ensures proper serving of the static Next.js site
+plugins: []
+include:
+  - _next
+  - .nojekyll
