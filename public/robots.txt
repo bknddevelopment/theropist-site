@@ -1,0 +1,13 @@
+# Rosa Toral Therapy - Robots.txt
+
+User-agent: *
+Allow: /
+
+# Directories
+Disallow: /api/
+Disallow: /admin/
+Disallow: /_next/
+Disallow: /private/
+
+# Sitemap
+Sitemap: https://rosatoraltherapy.com/sitemap.xml

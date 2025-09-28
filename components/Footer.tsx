@@ -32,42 +32,52 @@ const Footer = () => {
   }
 
   return (
-    <footer className="bg-forest text-cream pt-16 pb-8">
+    <footer className="bg-gradient-to-br from-forest via-bark to-forest text-cream pt-16 pb-8 relative overflow-hidden texture-bark">
       <div className="container mx-auto px-4 lg:px-8">
         {/* Main Footer Content */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 pb-12 border-b border-sage/30">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 pb-12 relative">
+          {/* Organic divider */}
+          <svg className="absolute bottom-0 left-0 w-full h-1" viewBox="0 0 1200 4" preserveAspectRatio="none">
+            <path d="M0,2 Q300,0 600,2 T1200,1" stroke="rgba(139, 149, 116, 0.3)" strokeWidth="1" fill="none" className="animate-gentle-sway" />
+          </svg>
           {/* Brand Section */}
           <div className="lg:col-span-1">
             <div className="mb-6">
-              <h2 className="font-playfair text-2xl font-bold mb-2">
+              <h2 className="font-cormorant text-earth-2xl font-bold mb-2">
                 Sonoma Wellness
               </h2>
-              <p className="text-cream/80 text-sm">
+              <p className="text-cream/80 text-earth-sm">
                 Your journey to healing and wholeness begins here.
               </p>
             </div>
             <div className="space-y-3">
               <div className="flex items-start space-x-3">
-                <MapPin className="w-5 h-5 text-terracotta flex-shrink-0 mt-0.5" />
-                <p className="text-sm text-cream/80">
+                <div className="w-6 h-6 rounded-pebble bg-gradient-to-br from-terracotta/30 to-golden-hour/30 flex items-center justify-center flex-shrink-0 mt-0.5 animate-breathing">
+                  <MapPin className="w-4 h-4 text-cream" />
+                </div>
+                <p className="text-earth-sm text-cream/80">
                   123 Vineyard Lane<br />
                   Healdsburg, CA 95448
                 </p>
               </div>
               <div className="flex items-center space-x-3">
-                <Phone className="w-5 h-5 text-terracotta flex-shrink-0" />
+                <div className="w-6 h-6 rounded-pebble bg-gradient-to-br from-terracotta/30 to-golden-hour/30 flex items-center justify-center flex-shrink-0 animate-breathing" style={{ animationDelay: '1s' }}>
+                  <Phone className="w-4 h-4 text-cream" />
+                </div>
                 <a
                   href="tel:+17075551234"
-                  className="text-sm text-cream/80 hover:text-cream transition-colors"
+                  className="text-earth-sm text-cream/80 hover:text-cream transition-colors"
                 >
                   (707) 555-1234
                 </a>
               </div>
               <div className="flex items-center space-x-3">
-                <Mail className="w-5 h-5 text-terracotta flex-shrink-0" />
+                <div className="w-6 h-6 rounded-pebble bg-gradient-to-br from-terracotta/30 to-golden-hour/30 flex items-center justify-center flex-shrink-0 animate-breathing" style={{ animationDelay: '2s' }}>
+                  <Mail className="w-4 h-4 text-cream" />
+                </div>
                 <a
                   href="mailto:hello@sonomawellness.com"
-                  className="text-sm text-cream/80 hover:text-cream transition-colors"
+                  className="text-earth-sm text-cream/80 hover:text-cream transition-colors"
                 >
                   hello@sonomawellness.com
                 </a>
@@ -77,13 +87,13 @@ const Footer = () => {
 
           {/* Services Links */}
           <div>
-            <h3 className="font-playfair text-lg font-semibold mb-4">Services</h3>
+            <h3 className="font-cormorant text-earth-lg font-semibold mb-4">Services</h3>
             <ul className="space-y-2">
               {footerLinks.services.map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-sm text-cream/80 hover:text-cream transition-colors"
+                    className="text-earth-sm text-cream/80 hover:text-cream transition-colors"
                   >
                     {link.label}
                   </Link>
@@ -94,13 +104,13 @@ const Footer = () => {
 
           {/* Resources Links */}
           <div>
-            <h3 className="font-playfair text-lg font-semibold mb-4">Resources</h3>
+            <h3 className="font-cormorant text-earth-lg font-semibold mb-4">Resources</h3>
             <ul className="space-y-2">
               {footerLinks.resources.map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-sm text-cream/80 hover:text-cream transition-colors"
+                    className="text-earth-sm text-cream/80 hover:text-cream transition-colors"
                   >
                     {link.label}
                   </Link>
@@ -111,13 +121,13 @@ const Footer = () => {
 
           {/* Company Links */}
           <div>
-            <h3 className="font-playfair text-lg font-semibold mb-4">Company</h3>
+            <h3 className="font-cormorant text-earth-lg font-semibold mb-4">Company</h3>
             <ul className="space-y-2">
               {footerLinks.company.map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-sm text-cream/80 hover:text-cream transition-colors"
+                    className="text-earth-sm text-cream/80 hover:text-cream transition-colors"
                   >
                     {link.label}
                   </Link>
@@ -128,8 +138,8 @@ const Footer = () => {
 
           {/* Newsletter Signup */}
           <div>
-            <h3 className="font-playfair text-lg font-semibold mb-4">Stay Connected</h3>
-            <p className="text-sm text-cream/80 mb-4">
+            <h3 className="font-cormorant text-earth-lg font-semibold mb-4">Stay Connected</h3>
+            <p className="text-earth-sm text-cream/80 mb-4">
               Subscribe to our newsletter for wellness tips and updates.
             </p>
             <form className="space-y-3">
@@ -152,7 +162,7 @@ const Footer = () => {
         <div className="pt-8 flex flex-col md:flex-row items-center justify-between space-y-4 md:space-y-0">
           {/* Copyright and Legal */}
           <div className="flex flex-col md:flex-row items-center space-y-2 md:space-y-0 md:space-x-6">
-            <p className="text-sm text-cream/60">
+            <p className="text-earth-sm text-cream/60">
               © {currentYear} Sonoma Wellness Retreat. All rights reserved.
             </p>
             <div className="flex items-center space-x-4">
@@ -160,7 +170,7 @@ const Footer = () => {
                 <Link
                   key={link.href}
                   href={link.href}
-                  className="text-xs text-cream/60 hover:text-cream transition-colors"
+                  className="text-earth-xs text-cream/60 hover:text-cream transition-colors"
                 >
                   {link.label}
                 </Link>
@@ -196,7 +206,7 @@ const Footer = () => {
 
         {/* Made with Love */}
         <div className="mt-8 pt-8 border-t border-sage/20 text-center">
-          <p className="text-xs text-cream/50 flex items-center justify-center space-x-1">
+          <p className="text-earth-xs text-cream/50 flex items-center justify-center space-x-1">
             <span>Made with</span>
             <Heart className="w-3 h-3 fill-terracotta text-terracotta" />
             <span>in Sonoma County</span>

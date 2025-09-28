@@ -1,0 +1,358 @@
+/* Performance Optimized Organic Styles */
+/* GPU-Accelerated Animations with will-change hints */
+
+@layer utilities {
+  /* Optimized Animation Classes with GPU Acceleration */
+  .animate-fade-in {
+    animation: fadeIn 0.6s ease-in-out;
+    will-change: opacity;
+  }
+
+  .animate-slide-up {
+    animation: slideUp 0.6s ease-out;
+    will-change: transform, opacity;
+  }
+
+  /* GPU-Optimized Organic Animations */
+  .animate-gentle-sway {
+    animation: gentleSway 6s ease-in-out infinite;
+    will-change: transform;
+    transform: translateZ(0); /* Force GPU layer */
+    backface-visibility: hidden; /* Prevent flickering */
+  }
+
+  .animate-organic-grow {
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    will-change: transform;
+    transform: translateZ(0);
+  }
+
+  .animate-organic-grow:hover {
+    transform: scale(1.05) translateZ(0);
+  }
+
+  .animate-breathing {
+    animation: breathing 4s ease-in-out infinite;
+    will-change: transform, opacity;
+    transform: translateZ(0);
+  }
+
+  .animate-leaf-fall {
+    animation: leafFall 8s ease-in-out infinite;
+    will-change: transform, opacity;
+    transform: translateZ(0);
+    contain: layout style paint; /* Containment for better performance */
+  }
+
+  /* Optimized Ripple Effect */
+  .animate-ripple {
+    position: relative;
+    overflow: hidden;
+    transform: translateZ(0);
+  }
+
+  .animate-ripple::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    transform: translate(-50%, -50%) translateZ(0);
+    transition: width 0.6s, height 0.6s;
+    will-change: width, height;
+    pointer-events: none;
+  }
+
+  /* Remove will-change after animation completes */
+  .animation-done {
+    will-change: auto;
+  }
+
+  /* Optimized Shadows with CSS Variables for Reusability */
+  .shadow-warm-sm {
+    --shadow-color: 92, 64, 51;
+    box-shadow: 0 1px 2px 0 rgba(var(--shadow-color), 0.05);
+  }
+
+  .shadow-warm {
+    --shadow-color: 92, 64, 51;
+    box-shadow:
+      0 1px 3px 0 rgba(var(--shadow-color), 0.1),
+      0 1px 2px 0 rgba(var(--shadow-color), 0.06);
+  }
+
+  .shadow-warm-md {
+    --shadow-color: 92, 64, 51;
+    box-shadow:
+      0 4px 6px -1px rgba(var(--shadow-color), 0.1),
+      0 2px 4px -1px rgba(var(--shadow-color), 0.06);
+  }
+
+  .shadow-warm-lg {
+    --shadow-color: 92, 64, 51;
+    box-shadow:
+      0 10px 15px -3px rgba(var(--shadow-color), 0.1),
+      0 4px 6px -2px rgba(var(--shadow-color), 0.05);
+  }
+
+  .shadow-organic {
+    --shadow-color: 92, 64, 51;
+    --light-color: 250, 246, 240;
+    box-shadow:
+      3px 3px 10px rgba(var(--shadow-color), 0.15),
+      -3px -3px 10px rgba(var(--light-color), 0.8),
+      inset 1px 1px 2px rgba(var(--shadow-color), 0.05);
+  }
+
+  /* Optimized Clay Gradient with reduced complexity */
+  .bg-clay-gradient {
+    background: linear-gradient(135deg, #B87A5C 0%, #D4A574 50%, #B87A5C 100%);
+    background-size: 200% 200%;
+    animation: subtleShift 8s ease-in-out infinite;
+    will-change: background-position;
+  }
+
+  /* Optimized Pressed Earth Effect */
+  .pressed-earth {
+    --shadow-dark: 92, 64, 51;
+    --shadow-light: 212, 165, 116;
+    box-shadow:
+      inset 2px 2px 4px rgba(var(--shadow-dark), 0.2),
+      inset -2px -2px 4px rgba(var(--shadow-light), 0.2);
+    transform: translateZ(0);
+  }
+
+  .pressed-earth:active {
+    box-shadow:
+      inset 3px 3px 6px rgba(var(--shadow-dark), 0.3),
+      inset -3px -3px 6px rgba(var(--shadow-light), 0.3);
+  }
+}
+
+/* Optimized Keyframes with GPU-friendly transforms */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translate3d(0, 20px, 0);
+    opacity: 0;
+  }
+  to {
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+  }
+}
+
+@keyframes gentleSway {
+  0%, 100% {
+    transform: translate3d(0, 0, 0) rotate(0deg);
+  }
+  25% {
+    transform: translate3d(5px, 0, 0) rotate(1deg);
+  }
+  75% {
+    transform: translate3d(-5px, 0, 0) rotate(-1deg);
+  }
+}
+
+@keyframes breathing {
+  0%, 100% {
+    transform: scale3d(1, 1, 1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale3d(1.05, 1.05, 1);
+    opacity: 0.9;
+  }
+}
+
+@keyframes leafFall {
+  0% {
+    transform: translate3d(0, 0, 0) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translate3d(0, 100vh, 0) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+@keyframes subtleShift {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+/* Performance Hints for Heavy Elements */
+.perf-optimize {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Reduce paint areas for fixed elements */
+.fixed-optimize {
+  will-change: transform;
+  transform: translateZ(0);
+}
+
+/* Optimize backdrop filters */
+.backdrop-optimize {
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transform: translateZ(0);
+}
+
+/* Use CSS containment for isolated components */
+.contain-paint {
+  contain: paint;
+}
+
+.contain-layout {
+  contain: layout;
+}
+
+.contain-style {
+  contain: style;
+}
+
+.contain-all {
+  contain: layout style paint;
+}
+
+/* Reduce Texture Complexity for Better Performance */
+.texture-optimized {
+  position: relative;
+  background-color: rgba(250, 246, 240, 0.95);
+  background-image:
+    linear-gradient(90deg, transparent 0%, rgba(139, 149, 116, 0.02) 50%, transparent 100%);
+  background-size: 4px 4px;
+}
+
+/* Optimized Organic Borders using CSS instead of complex calculations */
+.rounded-organic-optimized {
+  border-radius: 2rem;
+  position: relative;
+}
+
+.rounded-organic-optimized::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 2rem 1.5rem 2.3rem 1.8rem;
+  pointer-events: none;
+}
+
+/* Intersection Observer Classes for Lazy Animation */
+.lazy-animate {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.lazy-animate.in-view {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+/* Reduce Reflows with Fixed Dimensions */
+.fixed-height-card {
+  min-height: 300px; /* Prevent layout shift */
+}
+
+.aspect-ratio-box {
+  aspect-ratio: 16 / 9; /* Maintain aspect ratio without JS */
+}
+
+/* Optimize Image Loading */
+.image-container {
+  background-color: #E8D5C4; /* Placeholder color */
+  position: relative;
+  overflow: hidden;
+}
+
+.image-blur-load {
+  filter: blur(5px);
+  transition: filter 0.3s;
+}
+
+.image-blur-load.loaded {
+  filter: blur(0);
+}
+
+/* Critical CSS for Above-the-fold Content */
+.critical-text {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  color: #3D2F27;
+  line-height: 1.6;
+}
+
+.critical-bg {
+  background-color: #FAF6F0;
+}
+
+/* Reduce Paint Complexity for Repeating Elements */
+.simple-gradient {
+  background: linear-gradient(to bottom, #FAF6F0 0%, #E8D5C4 100%);
+}
+
+/* Optimize Hover States */
+.hover-optimize {
+  transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
+  transform: translateZ(0);
+}
+
+.hover-optimize:hover {
+  transform: translateY(-2px) translateZ(0);
+}
+
+/* Batch DOM Updates with CSS Variables */
+:root {
+  --animation-duration: 0.3s;
+  --animation-easing: cubic-bezier(0.4, 0, 0.2, 1);
+  --shadow-elevation-1: 0 1px 3px rgba(92, 64, 51, 0.12);
+  --shadow-elevation-2: 0 4px 6px rgba(92, 64, 51, 0.16);
+  --shadow-elevation-3: 0 10px 20px rgba(92, 64, 51, 0.2);
+}
+
+/* Optimize Scroll Performance */
+.smooth-scroll {
+  scroll-behavior: smooth;
+  overscroll-behavior: contain;
+}
+
+/* Reduce Composite Layers */
+.reduce-layers {
+  z-index: auto;
+  position: relative;
+}
+
+/* Font Loading Optimization */
+.font-display-swap {
+  font-display: swap;
+}
+
+/* Preload Critical Resources */
+.preload-hint {
+  /* Use with rel="preload" in HTML */
+  font-display: optional;
+}

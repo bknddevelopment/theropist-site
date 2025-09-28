@@ -1,0 +1,212 @@
+/**
+ * Seasonal Theme Styles
+ * Smooth transitions and seasonal-specific decorations
+ */
+
+/* Theme transition animations */
+.theme-transitioning {
+  transition: background-color 600ms cubic-bezier(0.4, 0, 0.2, 1),
+              color 600ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.theme-transitioning * {
+  transition: background-color 600ms cubic-bezier(0.4, 0, 0.2, 1),
+              color 600ms cubic-bezier(0.4, 0, 0.2, 1),
+              border-color 600ms cubic-bezier(0.4, 0, 0.2, 1),
+              box-shadow 600ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Spring Theme Styles */
+.season-spring {
+  --seasonal-bg-gradient: radial-gradient(ellipse at top left, rgba(74, 103, 65, 0.05) 0%, transparent 60%),
+                          radial-gradient(ellipse at bottom right, rgba(166, 107, 122, 0.05) 0%, transparent 60%);
+  --seasonal-texture: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%234A6741' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+
+.season-spring body {
+  background-image: var(--seasonal-bg-gradient), var(--seasonal-texture);
+  background-size: 100% 100%, 60px 60px;
+}
+
+/* Spring decorative elements */
+.season-spring .hero-section::before {
+  content: '';
+  position: absolute;
+  top: 10%;
+  right: 5%;
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(circle, rgba(166, 107, 122, 0.1) 0%, transparent 70%);
+  border-radius: 50%;
+  animation: float-gentle 6s ease-in-out infinite;
+  pointer-events: none;
+}
+
+/* Summer Theme Styles */
+.season-summer {
+  --seasonal-bg-gradient: radial-gradient(ellipse at top center, rgba(139, 111, 61, 0.08) 0%, transparent 70%),
+                          radial-gradient(ellipse at bottom center, rgba(91, 133, 166, 0.05) 0%, transparent 70%);
+  --seasonal-texture: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%238B6F3D' fill-opacity='0.02'%3E%3Cpath d='M20 20c0-1.11.89-2 2-2 1.11 0 2 .89 2 2 0 1.11-.89 2-2 2-1.11 0-2-.89-2-2zm-8 0c0-1.11.89-2 2-2 1.11 0 2 .89 2 2 0 1.11-.89 2-2 2-1.11 0-2-.89-2-2z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+
+.season-summer body {
+  background-image: var(--seasonal-bg-gradient), var(--seasonal-texture);
+  background-size: 100% 100%, 40px 40px;
+}
+
+/* Summer sun rays effect */
+.season-summer .hero-section::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -50%;
+  width: 200%;
+  height: 200%;
+  background: conic-gradient(from 45deg, transparent 0deg, rgba(255, 248, 231, 0.1) 30deg, transparent 60deg);
+  animation: rotate-slow 30s linear infinite;
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+/* Autumn Theme Styles */
+.season-autumn {
+  --seasonal-bg-gradient: radial-gradient(ellipse at top left, rgba(166, 93, 47, 0.08) 0%, transparent 60%),
+                          radial-gradient(ellipse at bottom right, rgba(125, 63, 69, 0.06) 0%, transparent 60%);
+  --seasonal-texture: url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23A65D2F' fill-opacity='0.03'%3E%3Cpath d='M50 50c0-2.21 1.79-4 4-4 2.21 0 4 1.79 4 4 0 2.21-1.79 4-4 4-2.21 0-4-1.79-4-4zm-28 0c0-2.21 1.79-4 4-4 2.21 0 4 1.79 4 4 0 2.21-1.79 4-4 4-2.21 0-4-1.79-4-4z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+
+.season-autumn body {
+  background-image: var(--seasonal-bg-gradient), var(--seasonal-texture);
+  background-size: 100% 100%, 80px 80px;
+}
+
+/* Autumn floating leaves */
+@keyframes leaf-sway {
+  0%, 100% {
+    transform: translateX(0) rotate(0deg);
+  }
+  25% {
+    transform: translateX(30px) rotate(15deg);
+  }
+  75% {
+    transform: translateX(-30px) rotate(-15deg);
+  }
+}
+
+.season-autumn .decorative-leaf {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  background: linear-gradient(135deg, #C67D4F 0%, #9D5F65 100%);
+  mask-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M50 10c0 20-20 40-20 40s20-10 20-40z'/%3E%3C/svg%3E");
+  mask-size: contain;
+  mask-repeat: no-repeat;
+  animation: leaf-sway 5s ease-in-out infinite;
+  opacity: 0.3;
+}
+
+/* Winter Theme Styles */
+.season-winter {
+  --seasonal-bg-gradient: radial-gradient(ellipse at top center, rgba(75, 96, 120, 0.05) 0%, transparent 70%),
+                          radial-gradient(ellipse at bottom center, rgba(138, 154, 170, 0.04) 0%, transparent 70%);
+  --seasonal-texture: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%235C6066' fill-opacity='0.02'%3E%3Cpath d='M30 30l-15 15 15 15 15-15-15-15zm0 8.5L23.5 45 30 51.5 36.5 45 30 38.5z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+
+.season-winter body {
+  background-image: var(--seasonal-bg-gradient), var(--seasonal-texture);
+  background-size: 100% 100%, 60px 60px;
+}
+
+/* Winter frost effect */
+.season-winter .hero-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(240, 244, 248, 0.1) 0%, transparent 30%, transparent 70%, rgba(240, 244, 248, 0.1) 100%);
+  pointer-events: none;
+}
+
+/* Shared animations */
+@keyframes float-gentle {
+  0%, 100% {
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    transform: translateY(-20px) scale(1.05);
+  }
+}
+
+@keyframes rotate-slow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Seasonal button styles */
+.season-spring .btn-primary {
+  background: linear-gradient(135deg, var(--seasonal-primary) 0%, var(--seasonal-primary-dark) 100%);
+}
+
+.season-summer .btn-primary {
+  background: linear-gradient(135deg, var(--seasonal-primary) 0%, var(--seasonal-primary-dark) 100%);
+}
+
+.season-autumn .btn-primary {
+  background: linear-gradient(135deg, var(--seasonal-primary) 0%, var(--seasonal-primary-dark) 100%);
+}
+
+.season-winter .btn-primary {
+  background: linear-gradient(135deg, var(--seasonal-primary) 0%, var(--seasonal-primary-dark) 100%);
+}
+
+/* Seasonal card styles */
+.season-spring .card {
+  box-shadow: 0 4px 6px rgba(74, 103, 65, 0.1), 0 1px 3px rgba(166, 107, 122, 0.08);
+}
+
+.season-summer .card {
+  box-shadow: 0 4px 6px rgba(139, 111, 61, 0.1), 0 1px 3px rgba(91, 133, 166, 0.08);
+}
+
+.season-autumn .card {
+  box-shadow: 0 4px 6px rgba(166, 93, 47, 0.1), 0 1px 3px rgba(125, 63, 69, 0.08);
+}
+
+.season-winter .card {
+  box-shadow: 0 4px 6px rgba(75, 96, 120, 0.1), 0 1px 3px rgba(138, 154, 170, 0.08);
+}
+
+/* Reduce motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .theme-transitioning,
+  .theme-transitioning * {
+    transition-duration: 0.01ms !important;
+  }
+
+  .decorative-leaf,
+  .season-spring .hero-section::before,
+  .season-summer .hero-section::after {
+    animation: none !important;
+  }
+}
+
+/* High contrast mode adjustments */
+@media (prefers-contrast: high) {
+  .season-spring,
+  .season-summer,
+  .season-autumn,
+  .season-winter {
+    --seasonal-bg-gradient: none;
+    --seasonal-texture: none;
+  }
+
+  .season-spring .hero-section::before,
+  .season-summer .hero-section::after,
+  .season-autumn .decorative-leaf,
+  .season-winter .hero-section::before {
+    display: none;
+  }
+}

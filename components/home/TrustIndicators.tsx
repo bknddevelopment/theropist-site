@@ -56,7 +56,7 @@ const TrustIndicators = () => {
                   <Icon className="w-8 h-8 text-terracotta" />
                 </div>
                 <h3 className="font-semibold text-forest mb-2">{indicator.title}</h3>
-                <p className="text-sm text-forest/70">{indicator.description}</p>
+                <p className="text-earth-sm text-forest/70">{indicator.description}</p>
               </motion.div>
             )
           })}

@@ -4,6 +4,7 @@ import { motion } from 'framer-motion'
 import Link from 'next/link'
 import Image from 'next/image'
 import { User, Users, UserCheck, Sparkles, Clock, ArrowRight } from 'lucide-react'
+import { ParallaxWrapper } from '@/components/ui/ParallaxWrapper'
 
 const services = [
   {
@@ -50,7 +51,7 @@ const services = [
 
 const ServiceCards = () => {
   return (
-    <section className="py-20 bg-cream">
+    <section className="py-20 bg-cream texture-paper relative overflow-hidden">
       <div className="container mx-auto px-4 lg:px-8">
         {/* Section Header */}
         <motion.div
@@ -60,10 +61,10 @@ const ServiceCards = () => {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="font-playfair text-4xl md:text-5xl text-forest font-bold mb-4">
+          <h2 className="font-cormorant text-earth-4xl md:text-earth-5xl text-forest font-bold mb-4">
             Our Healing Services
           </h2>
-          <p className="text-xl text-forest/80 max-w-2xl mx-auto">
+          <p className="text-earth-xl text-forest/80 max-w-2xl mx-auto">
             Choose the path that resonates with your journey. Each service is designed to support your unique needs and goals.
           </p>
         </motion.div>
@@ -79,25 +80,30 @@ const ServiceCards = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 viewport={{ once: true }}
-                className="group relative bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300"
+                whileFocus={{ scale: 1.02 }}
+                className="group relative bg-white rounded-organic overflow-hidden shadow-organic hover:shadow-warm-xl transition-all duration-300 motion-safe:transition-all focus-within:ring-4 focus-within:ring-terracotta/30 animate-organic-grow texture-linen"
               >
-                {/* Image */}
+                {/* Image with subtle parallax on hover */}
                 <div className="relative h-48 overflow-hidden">
-                  <Image
-                    src={service.image}
-                    alt={service.title}
-                    fill
-                    className="object-cover group-hover:scale-110 transition-transform duration-500"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-forest/60 to-transparent" />
-                  <div className="absolute top-4 left-4 bg-cream/90 backdrop-blur-sm p-2 rounded-full">
-                    <Icon className="w-6 h-6 text-terracotta" />
+                  <div className="absolute inset-0 will-change-transform transition-transform duration-700 group-hover:scale-110">
+                    <Image
+                      src={service.image}
+                      alt={service.title}
+                      fill
+                      className="object-cover motion-reduce:transition-none"
+                    />
                   </div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-forest/60 to-transparent" />
+                  <ParallaxWrapper speed={0.8} layer="foreground" className="absolute top-4 left-4" disabled={index > 1}>
+                    <div className="bg-gradient-to-br from-forest/90 to-bark/80 backdrop-blur-sm p-3 rounded-pebble shadow-warm-md animate-breathing" aria-hidden="true">
+                      <Icon className="w-6 h-6 text-cream" />
+                    </div>
+                  </ParallaxWrapper>
                 </div>
 
                 {/* Content */}
                 <div className="p-6">
-                  <h3 className="font-playfair text-2xl text-forest font-bold mb-2">
+                  <h3 className="font-cormorant text-earth-2xl text-forest font-bold mb-2">
                     {service.title}
                   </h3>
                   <p className="text-forest/70 mb-4 line-clamp-2">
@@ -107,25 +113,32 @@ const ServiceCards = () => {
                   {/* Features */}
                   <ul className="space-y-2 mb-4">
                     {service.features.map((feature, idx) => (
-                      <li key={idx} className="flex items-center text-sm text-forest/60">
-                        <span className="w-1.5 h-1.5 bg-terracotta rounded-full mr-2" />
+                      <li key={idx} className="flex items-center text-earth-sm text-forest/60">
+                        <span className="w-2 h-2 bg-gradient-to-r from-terracotta to-golden-hour rounded-organic mr-2 animate-breathing" style={{ animationDelay: `${idx * 0.2}s` }} />
                         {feature}
                       </li>
                     ))}
                   </ul>
 
                   {/* Price and CTA */}
-                  <div className="flex items-center justify-between mt-6 pt-4 border-t border-sage/20">
-                    <span className="text-lg font-semibold text-terracotta">
+                  {/* Organic divider */}
+                  <div className="mt-6 pt-4 relative">
+                    <svg className="absolute top-0 left-0 w-full h-1" viewBox="0 0 200 4" preserveAspectRatio="none">
+                      <path d="M0,2 Q50,0 100,2 T200,1" stroke="rgba(139, 149, 116, 0.2)" strokeWidth="1" fill="none" />
+                    </svg>
+                    <div className="flex items-center justify-between">
+                    <span className="text-earth-lg font-semibold text-terracotta">
                       {service.price}
                     </span>
                     <Link
                       href={`/services/${service.id}`}
-                      className="group/btn flex items-center space-x-1 text-forest hover:text-terracotta transition-colors"
+                      className="group/btn flex items-center space-x-1 text-forest hover:text-terracotta-dark focus:text-terracotta-dark transition-colors focus:outline-none focus:underline focus:decoration-2 min-h-[44px] min-w-[44px] py-2"
+                      aria-label={`Learn more about ${service.title}`}
                     >
-                      <span className="text-sm font-medium">Learn More</span>
+                      <span className="text-earth-sm font-medium">Learn More</span>
                       <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
                     </Link>
+                    </div>
                   </div>
                 </div>
               </motion.div>
@@ -133,7 +146,7 @@ const ServiceCards = () => {
           })}
         </div>
 
-        {/* Bottom CTA */}
+        {/* Bottom CTA with organic shape */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -143,12 +156,23 @@ const ServiceCards = () => {
         >
           <Link
             href="/services"
-            className="inline-flex items-center space-x-2 bg-forest text-cream px-8 py-4 rounded-full font-semibold hover:bg-sage transition-colors"
+            className="inline-flex items-center space-x-2 bg-clay-gradient text-cream px-8 py-4 rounded-stone font-semibold transition-all duration-300 shadow-warm-xl hover:shadow-2xl focus:outline-none focus:ring-4 focus:ring-terracotta/50 focus:ring-offset-2 focus:ring-offset-cream min-h-[44px] animate-organic-grow animate-ripple pressed-earth"
+            aria-label="View all therapy services"
           >
             <span>View All Services</span>
-            <ArrowRight className="w-5 h-5" />
+            <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
           </Link>
         </motion.div>
+      </div>
+
+      {/* Decorative organic shapes with parallax */}
+      <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
+        <ParallaxWrapper speed={0.3} layer="background" className="absolute top-10 right-20">
+          <div className="w-64 h-64 rounded-pebble bg-gradient-to-br from-sage/5 to-moss/5 animate-gentle-sway" />
+        </ParallaxWrapper>
+        <ParallaxWrapper speed={0.5} layer="midground" className="absolute bottom-20 left-10">
+          <div className="w-48 h-48 rounded-stone bg-gradient-to-tr from-terracotta/5 to-golden-hour/5 animate-breathing" style={{ animationDelay: '2s' }} />
+        </ParallaxWrapper>
       </div>
     </section>
   )

@@ -2,13 +2,15 @@
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
-import { Menu, X, Phone, Calendar } from 'lucide-react'
+import { Menu, X, Phone, Calendar, User } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { motion, AnimatePresence } from 'framer-motion'
+import { useAuth } from '@/lib/auth/auth-context'
 
 const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const { user, isAuthenticated } = useAuth()
 
   useEffect(() => {
     const handleScroll = () => {
@@ -32,7 +34,7 @@ const Navigation = () => {
       className={cn(
         'fixed top-0 left-0 right-0 z-50 transition-all duration-300',
         isScrolled
-          ? 'bg-cream/95 backdrop-blur-md shadow-lg py-4'
+          ? 'bg-cream/95 backdrop-blur-md shadow-organic py-4 texture-linen'
           : 'bg-transparent py-6'
       )}
     >
@@ -43,14 +45,14 @@ const Navigation = () => {
             href="/"
             className="flex items-center space-x-2 group"
           >
-            <div className="w-10 h-10 rounded-full bg-sage flex items-center justify-center group-hover:bg-forest transition-colors">
-              <span className="text-cream font-playfair text-xl font-bold">S</span>
+            <div className="w-10 h-10 rounded-pebble bg-gradient-to-br from-sage to-moss flex items-center justify-center group-hover:from-forest group-hover:to-bark transition-all duration-300 animate-organic-grow shadow-warm-sm">
+              <span className="text-cream font-cormorant text-earth-xl font-bold">S</span>
             </div>
             <div>
-              <h1 className="font-playfair text-xl font-bold text-forest">
+              <h1 className="font-cormorant text-earth-xl font-bold text-forest">
                 Sonoma Wellness
               </h1>
-              <p className="text-xs text-sage -mt-1">Retreat & Therapy</p>
+              <p className="text-earth-xs text-sage -mt-1">Retreat & Therapy</p>
             </div>
           </Link>
 
@@ -60,9 +62,12 @@ const Navigation = () => {
               <Link
                 key={link.href}
                 href={link.href}
-                className="text-forest hover:text-terracotta transition-colors font-medium"
+                className="text-forest hover:text-terracotta transition-all duration-300 font-medium relative group/link"
               >
-                {link.label}
+                <span className="relative">
+                  {link.label}
+                  <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-terracotta to-golden-hour group-hover/link:w-full transition-all duration-300 rounded-full" />
+                </span>
               </Link>
             ))}
           </div>
@@ -77,12 +82,29 @@ const Navigation = () => {
               <span className="font-medium">(707) 555-1234</span>
             </a>
             <Link
-              href="/book"
-              className="flex items-center space-x-2 bg-terracotta text-cream px-5 py-2.5 rounded-full hover:bg-forest transition-colors font-medium"
+              href="/booking"
+              className="flex items-center space-x-2 bg-clay-gradient text-cream px-5 py-2.5 rounded-stone font-medium shadow-warm-md hover:shadow-warm-lg transition-all duration-300 animate-organic-grow animate-ripple pressed-earth"
             >
               <Calendar className="w-4 h-4" />
               <span>Book Session</span>
             </Link>
+            {isAuthenticated ? (
+              <Link
+                href="/portal"
+                className="flex items-center space-x-2 bg-sage text-cream px-5 py-2.5 rounded-stone font-medium shadow-warm-md hover:shadow-warm-lg transition-all duration-300"
+              >
+                <User className="w-4 h-4" />
+                <span>Portal</span>
+              </Link>
+            ) : (
+              <Link
+                href="/login"
+                className="flex items-center space-x-2 text-forest hover:text-terracotta transition-colors font-medium"
+              >
+                <User className="w-4 h-4" />
+                <span>Sign In</span>
+              </Link>
+            )}
           </div>
 
           {/* Mobile Menu Button */}
@@ -107,7 +129,7 @@ const Navigation = () => {
               animate={{ opacity: 1, height: 'auto' }}
               exit={{ opacity: 0, height: 0 }}
               transition={{ duration: 0.3 }}
-              className="lg:hidden mt-4 py-4 border-t border-sage/20"
+              className="lg:hidden mt-4 py-4 border-t border-sage/20 bg-cream/95 backdrop-blur-md rounded-organic shadow-organic"
             >
               <div className="flex flex-col space-y-4">
                 {navLinks.map((link) => (
@@ -115,7 +137,7 @@ const Navigation = () => {
                     key={link.href}
                     href={link.href}
                     onClick={() => setIsMobileMenuOpen(false)}
-                    className="text-forest hover:text-terracotta transition-colors font-medium text-lg"
+                    className="text-forest hover:text-terracotta transition-all duration-300 font-medium text-earth-lg px-4 py-2 rounded-organic-sm hover:bg-sage/10"
                   >
                     {link.label}
                   </Link>
@@ -123,19 +145,38 @@ const Navigation = () => {
                 <div className="pt-4 space-y-3 border-t border-sage/20">
                   <a
                     href="tel:+17075551234"
-                    className="flex items-center space-x-2 text-forest hover:text-terracotta transition-colors"
+                    className="flex items-center space-x-2 text-forest hover:text-terracotta transition-colors px-4"
                   >
                     <Phone className="w-4 h-4" />
                     <span className="font-medium">(707) 555-1234</span>
                   </a>
                   <Link
-                    href="/book"
+                    href="/booking"
                     onClick={() => setIsMobileMenuOpen(false)}
-                    className="flex items-center justify-center space-x-2 bg-terracotta text-cream px-5 py-3 rounded-full hover:bg-forest transition-colors font-medium"
+                    className="flex items-center justify-center space-x-2 bg-clay-gradient text-cream px-5 py-3 rounded-stone hover:shadow-warm-lg transition-all duration-300 font-medium animate-organic-grow pressed-earth mx-4"
                   >
                     <Calendar className="w-4 h-4" />
                     <span>Book Session</span>
                   </Link>
+                  {isAuthenticated ? (
+                    <Link
+                      href="/portal"
+                      onClick={() => setIsMobileMenuOpen(false)}
+                      className="flex items-center justify-center space-x-2 bg-sage text-cream px-5 py-3 rounded-stone hover:shadow-warm-lg transition-all duration-300 font-medium mx-4"
+                    >
+                      <User className="w-4 h-4" />
+                      <span>Client Portal</span>
+                    </Link>
+                  ) : (
+                    <Link
+                      href="/login"
+                      onClick={() => setIsMobileMenuOpen(false)}
+                      className="flex items-center justify-center space-x-2 text-forest hover:text-terracotta transition-colors font-medium px-4"
+                    >
+                      <User className="w-4 h-4" />
+                      <span>Sign In</span>
+                    </Link>
+                  )}
                 </div>
               </div>
             </motion.div>
