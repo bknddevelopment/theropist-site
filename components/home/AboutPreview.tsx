@@ -5,6 +5,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { ArrowRight, Leaf, Heart } from 'lucide-react'
 import { ParallaxWrapper } from '@/components/ui/ParallaxWrapper'
+import { getPlaceholderDataUrl } from '@/lib/utils/placeholder-images'
 
 const AboutPreview = () => {
   return (
@@ -93,10 +94,11 @@ const AboutPreview = () => {
               {/* Main Image with organic shape */}
               <div className="relative h-[500px] rounded-organic-lg overflow-hidden shadow-organic">
                 <Image
-                  src="https://images.unsplash.com/photo-1600334089648-b0d9d3028eb2"
+                  src={getPlaceholderDataUrl(500, 500)}
                   alt="Therapy session room"
                   fill
                   className="object-cover"
+                  unoptimized
                 />
               </div>
               

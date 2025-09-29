@@ -93,7 +93,7 @@ const Footer = () => {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-earth-sm text-cream/80 hover:text-cream transition-colors"
+                    className="text-earth-sm text-cream/80 hover:text-cream transition-colors block p-3 -m-2 rounded"
                   >
                     {link.label}
                   </Link>
@@ -110,7 +110,7 @@ const Footer = () => {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-earth-sm text-cream/80 hover:text-cream transition-colors"
+                    className="text-earth-sm text-cream/80 hover:text-cream transition-colors block p-3 -m-2 rounded"
                   >
                     {link.label}
                   </Link>
@@ -127,7 +127,7 @@ const Footer = () => {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-earth-sm text-cream/80 hover:text-cream transition-colors"
+                    className="text-earth-sm text-cream/80 hover:text-cream transition-colors block p-3 -m-2 rounded"
                   >
                     {link.label}
                   </Link>
@@ -143,14 +143,17 @@ const Footer = () => {
               Subscribe to our newsletter for wellness tips and updates.
             </p>
             <form className="space-y-3">
+              <label htmlFor="newsletter-email" className="sr-only">Email address for newsletter</label>
               <input
+                id="newsletter-email"
                 type="email"
                 placeholder="Enter your email"
-                className="w-full px-4 py-2 bg-cream/10 border border-cream/20 rounded-lg text-cream placeholder-cream/50 focus:outline-none focus:border-terracotta transition-colors"
+                aria-label="Email address"
+                className="w-full px-4 py-3 bg-cream/10 border border-cream/20 rounded-lg text-cream placeholder-cream/50 focus:outline-none focus:border-terracotta transition-colors min-h-[44px]"
               />
               <button
                 type="submit"
-                className="w-full bg-terracotta text-cream px-4 py-2 rounded-lg hover:bg-terracotta/90 transition-colors font-medium"
+                className="w-full bg-terracotta text-cream px-4 py-3 rounded-lg hover:bg-terracotta/90 transition-colors font-medium min-h-[44px]"
               >
                 Subscribe
               </button>
@@ -170,7 +173,7 @@ const Footer = () => {
                 <Link
                   key={link.href}
                   href={link.href}
-                  className="text-earth-xs text-cream/60 hover:text-cream transition-colors"
+                  className="text-earth-xs text-cream/60 hover:text-cream transition-colors p-3 inline-block rounded"
                 >
                   {link.label}
                 </Link>
@@ -183,21 +186,21 @@ const Footer = () => {
             <a
               href="https://facebook.com"
               aria-label="Facebook"
-              className="w-10 h-10 bg-cream/10 rounded-full flex items-center justify-center hover:bg-terracotta transition-colors"
+              className="w-12 h-12 bg-cream/10 rounded-full flex items-center justify-center hover:bg-terracotta transition-colors"
             >
               <Facebook className="w-5 h-5" />
             </a>
             <a
               href="https://instagram.com"
               aria-label="Instagram"
-              className="w-10 h-10 bg-cream/10 rounded-full flex items-center justify-center hover:bg-terracotta transition-colors"
+              className="w-12 h-12 bg-cream/10 rounded-full flex items-center justify-center hover:bg-terracotta transition-colors"
             >
               <Instagram className="w-5 h-5" />
             </a>
             <a
               href="https://linkedin.com"
               aria-label="LinkedIn"
-              className="w-10 h-10 bg-cream/10 rounded-full flex items-center justify-center hover:bg-terracotta transition-colors"
+              className="w-12 h-12 bg-cream/10 rounded-full flex items-center justify-center hover:bg-terracotta transition-colors"
             >
               <Linkedin className="w-5 h-5" />
             </a>

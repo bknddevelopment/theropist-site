@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion'
 import { Star, Quote } from 'lucide-react'
 import Image from 'next/image'
+import { getPlaceholderDataUrl } from '@/lib/utils/placeholder-images'
 
 const testimonials = [
   {
@@ -11,7 +12,7 @@ const testimonials = [
     role: 'Individual Therapy Client',
     content: 'The therapy I received here truly changed my life. The combination of professional expertise and genuine compassion created a safe space for healing I never thought possible.',
     rating: 5,
-    image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330',
+    image: getPlaceholderDataUrl(200, 200),
   },
   {
     id: '2',
@@ -19,7 +20,7 @@ const testimonials = [
     role: 'Couples Counseling',
     content: 'Our relationship was transformed through the guidance we received. We learned to communicate better and rediscovered the love that brought us together.',
     rating: 5,
-    image: 'https://images.unsplash.com/photo-1516589091380-5d8e87df6999',
+    image: getPlaceholderDataUrl(200, 200),
   },
   {
     id: '3',
@@ -27,7 +28,7 @@ const testimonials = [
     role: 'Retreat Participant',
     content: 'The wellness retreat was a profound experience. The beautiful setting, expert facilitators, and thoughtful program design created the perfect environment for personal growth.',
     rating: 5,
-    image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d',
+    image: getPlaceholderDataUrl(200, 200),
   },
 ]
 
@@ -42,6 +43,7 @@ const TestimonialsSection = () => {
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
           className="text-center mb-16"
+          style={{ opacity: 1 }}
         >
           <h2 className="font-cormorant text-earth-4xl md:text-earth-5xl text-forest font-bold mb-4">
             Voices of Transformation
@@ -61,6 +63,7 @@ const TestimonialsSection = () => {
               transition={{ duration: 0.6, delay: index * 0.1 }}
               viewport={{ once: true }}
               className="bg-white rounded-organic p-8 shadow-organic relative texture-linen animate-organic-grow"
+              style={{ opacity: 1 }}
             >
               {/* Quote Icon with organic background */}
               <div className="absolute top-6 right-6 w-12 h-12 rounded-pebble bg-gradient-to-br from-terracotta/10 to-golden-hour/10 flex items-center justify-center animate-breathing">

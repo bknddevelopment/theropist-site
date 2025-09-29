@@ -62,7 +62,7 @@ const Navigation = () => {
               <Link
                 key={link.href}
                 href={link.href}
-                className="text-forest hover:text-terracotta transition-all duration-300 font-medium relative group/link"
+                className="text-forest hover:text-terracotta transition-all duration-300 font-medium relative group/link p-3 -m-3 rounded"
               >
                 <span className="relative">
                   {link.label}
@@ -110,7 +110,7 @@ const Navigation = () => {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="lg:hidden text-forest hover:text-terracotta transition-colors"
+            className="lg:hidden text-forest hover:text-terracotta transition-colors p-3 -m-3 rounded"
             aria-label="Toggle mobile menu"
           >
             {isMobileMenuOpen ? (
@@ -137,7 +137,7 @@ const Navigation = () => {
                     key={link.href}
                     href={link.href}
                     onClick={() => setIsMobileMenuOpen(false)}
-                    className="text-forest hover:text-terracotta transition-all duration-300 font-medium text-earth-lg px-4 py-2 rounded-organic-sm hover:bg-sage/10"
+                    className="text-forest hover:text-terracotta transition-all duration-300 font-medium text-earth-lg px-4 py-3 rounded-organic-sm hover:bg-sage/10 min-h-[44px] flex items-center"
                   >
                     {link.label}
                   </Link>

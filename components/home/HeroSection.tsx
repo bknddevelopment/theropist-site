@@ -5,6 +5,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { ArrowRight, Heart, Leaf, Sun } from 'lucide-react'
 import { ParallaxWrapper, ParallaxShape, ParallaxScene } from '@/components/ui/ParallaxWrapper'
+import { getPlaceholderDataUrl } from '@/lib/utils/placeholder-images'
 
 const HeroSection = () => {
   return (
@@ -45,11 +46,12 @@ const HeroSection = () => {
         </ParallaxWrapper>
 
         <Image
-          src="https://images.unsplash.com/photo-1506126613408-eca07ce68773"
+          src={getPlaceholderDataUrl(1920, 1080)}
           alt="Serene Sonoma landscape"
           fill
           className="object-cover"
           priority
+          unoptimized
         />
       </ParallaxScene>
 
@@ -105,6 +107,7 @@ const HeroSection = () => {
             className="mb-6"
             whileHover={{ scale: 1.02 }}
             whileFocus={{ scale: 1.02 }}
+            style={{ opacity: 1 }}
           >
             <span className="inline-flex items-center space-x-2 bg-cream/20 backdrop-blur-sm text-cream px-6 py-3 rounded-organic text-earth-sm font-medium shadow-organic">
               <Heart className="w-4 h-4 text-terracotta animate-breathing" />
@@ -117,6 +120,7 @@ const HeroSection = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.1 }}
             className="font-cormorant text-earth-5xl md:text-earth-6xl lg:text-earth-7xl text-cream font-bold mb-6 leading-tight drop-shadow-lg"
+            style={{ opacity: 1 }}
           >
             Transform Your Life at
             <span className="block text-transparent bg-clip-text bg-gradient-to-r from-terracotta via-golden-hour to-terracotta mt-2">Sonoma Wellness Retreat</span>
@@ -127,6 +131,7 @@ const HeroSection = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
             className="text-earth-xl md:text-earth-2xl text-cream mb-8 max-w-2xl mx-auto drop-shadow"
+            style={{ opacity: 1 }}
           >
             Experience compassionate therapy and holistic healing in the serene beauty of Sonoma County. Your path to wellness begins here.
           </motion.p>
@@ -136,6 +141,7 @@ const HeroSection = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.3 }}
             className="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-6"
+            style={{ opacity: 1 }}
           >
             <Link
               href="/book"
@@ -160,6 +166,7 @@ const HeroSection = () => {
             animate={{ opacity: 1 }}
             transition={{ duration: 1, delay: 0.5 }}
             className="mt-12 flex flex-wrap items-center justify-center gap-6 text-cream/80"
+            style={{ opacity: 1 }}
           >
             <div className="flex items-center space-x-2 bg-cream/10 backdrop-blur-sm px-4 py-2 rounded-organic-sm">
               <span className="text-earth-3xl">★★★★★</span>
@@ -183,6 +190,7 @@ const HeroSection = () => {
         className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20"
         aria-hidden="true"
         role="presentation"
+        style={{ opacity: 1 }}
       >
         <div className="w-8 h-12 border-2 border-cream/50 rounded-organic flex justify-center animate-breathing">
           <motion.div

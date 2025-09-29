@@ -8,7 +8,7 @@ import Footer from '@/components/Footer'
 import { PerformanceMonitor } from '@/components/PerformanceMonitor'
 import { ThemeLayout } from '@/components/ThemeLayout'
 import { CursorWrapper } from '@/components/ui/CursorWrapper'
-import ParticleSystem from '@/components/ParticleSystem'
+import ParticleSystemWrapper from '@/components/ParticleSystemWrapper'
 import { ServiceWorkerRegistration } from '@/components/ServiceWorkerRegistration'
 import { generatePageSchema } from '@/lib/seo/schema'
 import { pageMetadata } from '@/lib/seo/metadata'
@@ -50,7 +50,6 @@ export default function RootLayout({
         {/* Critical Resource Hints */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link rel="dns-prefetch" href="https://images.unsplash.com" />
 
         {/* PWA Meta Tags */}
         <link rel="manifest" href="/manifest.json" />
@@ -85,7 +84,7 @@ export default function RootLayout({
             <ServiceWorkerRegistration />
             <CursorWrapper />
             <PerformanceMonitor />
-            <ParticleSystem
+            <ParticleSystemWrapper
               autoDetectSeason={true}
               defaultEnabled={true}
               defaultParticleCount={25}

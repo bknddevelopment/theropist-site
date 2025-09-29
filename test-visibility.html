@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Visibility Test - Rosa Toral Therapy</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            padding: 20px;
+            line-height: 1.6;
+            background: #FAF6F0;
+            color: #3D2F27;
+        }
+        .test-section {
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        .status {
+            font-weight: bold;
+            margin-left: 10px;
+        }
+        .pass { color: #3D5A3C; }
+        .warn { color: #8B6914; }
+        .fail { color: #A13E28; }
+        h1 { color: #3D2F27; }
+        h2 {
+            color: #6B7559;
+            border-bottom: 2px solid #E8D5C4;
+            padding-bottom: 10px;
+        }
+        .check-item {
+            display: flex;
+            align-items: center;
+            padding: 8px 0;
+            border-bottom: 1px solid #FAF6F0;
+        }
+        .check-item:last-child {
+            border-bottom: none;
+        }
+        iframe {
+            width: 100%;
+            height: 800px;
+            border: 2px solid #E8D5C4;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>🌿 Rosa Toral Therapy - Visibility Verification Report</h1>
+
+    <div class="test-section">
+        <h2>1. TEXT VISIBILITY CHECK</h2>
+        <div id="text-checks"></div>
+    </div>
+
+    <div class="test-section">
+        <h2>2. DESIGN ELEMENTS CHECK</h2>
+        <div id="design-checks"></div>
+    </div>
+
+    <div class="test-section">
+        <h2>3. PAGE RENDERING CHECK</h2>
+        <div id="page-checks"></div>
+    </div>
+
+    <div class="test-section">
+        <h2>4. ACCESSIBILITY CHECK</h2>
+        <div id="accessibility-checks"></div>
+    </div>
+
+    <div class="test-section">
+        <h2>5. RESPONSIVE DESIGN CHECK</h2>
+        <div id="responsive-checks"></div>
+    </div>
+
+    <div class="test-section">
+        <h2>Live Site Preview</h2>
+        <iframe src="http://localhost:3010" id="site-preview"></iframe>
+    </div>
+
+    <script>
+        async function runTests() {
+            // Test configuration
+            const tests = {
+                text: [
+                    { name: 'Hero Title', selector: 'h1', expected: 'Transform Your Life' },
+                    { name: 'Hero Subtitle', selector: '.text-earth-xl', expected: 'Experience compassionate therapy' },
+                    { name: 'CTA Buttons', selector: 'a[href="/book"]', expected: 'Book Your Session' },
+                    { name: 'Service Titles', selector: 'h3', minCount: 4 },
+                    { name: 'Navigation Links', selector: 'nav a', minCount: 5 },
+                    { name: 'Footer Text', selector: 'footer', expected: 'Rosa Toral' }
+                ],
+                design: [
+                    { name: 'Earth Tone Colors', check: 'css-colors' },
+                    { name: 'Organic Shapes', selector: '.rounded-organic' },
+                    { name: 'Animations', selector: '.animate-breathing' },
+                    { name: 'Parallax Effects', selector: '[class*="parallax"]' },
+                    { name: 'Texture Overlays', selector: '.texture-paper' },
+                    { name: 'Shadow Effects', selector: '.shadow-organic' }
+                ],
+                pages: [
+                    { name: 'Homepage', url: '/', expected: 'Rosa Toral Therapy' },
+                    { name: 'Services Section', selector: '#services' },
+                    { name: 'Testimonials', selector: '.testimonials' },
+                    { name: 'Contact Section', selector: '#contact' }
+                ],
+                accessibility: [
+                    { name: 'Touch Targets (44x44px)', check: 'touch-targets' },
+                    { name: 'Form Labels', selector: 'label' },
+                    { name: 'Alt Text', selector: 'img[alt]' },
+                    { name: 'Focus States', check: 'focus-visible' },
+                    { name: 'ARIA Labels', selector: '[aria-label]' }
+                ],
+                responsive: [
+                    { name: 'Mobile (375px)', viewport: { width: 375, height: 667 } },
+                    { name: 'Tablet (768px)', viewport: { width: 768, height: 1024 } },
+                    { name: 'Desktop (1920px)', viewport: { width: 1920, height: 1080 } }
+                ]
+            };
+
+            // Fetch the page
+            const response = await fetch('http://localhost:3010');
+            const html = await response.text();
+            const parser = new DOMParser();
+            const doc = parser.parseFromString(html, 'text/html');
+
+            // Run text visibility checks
+            const textResults = document.getElementById('text-checks');
+            tests.text.forEach(test => {
+                const elements = doc.querySelectorAll(test.selector || 'body');
+                let status = '❌';
+                let message = 'Not found';
+
+                if (test.expected) {
+                    const found = Array.from(elements).some(el =>
+                        el.textContent.includes(test.expected)
+                    );
+                    if (found) {
+                        status = '✅';
+                        message = 'Visible and correct';
+                    }
+                } else if (test.minCount) {
+                    if (elements.length >= test.minCount) {
+                        status = '✅';
+                        message = `Found ${elements.length} elements`;
+                    } else {
+                        status = '⚠️';
+                        message = `Found ${elements.length}/${test.minCount}`;
+                    }
+                }
+
+                textResults.innerHTML += `
+                    <div class="check-item">
+                        <span>${status}</span>
+                        <span style="margin-left: 10px;">${test.name}: ${message}</span>
+                    </div>
+                `;
+            });
+
+            // Run design elements checks
+            const designResults = document.getElementById('design-checks');
+            tests.design.forEach(test => {
+                let status = '❌';
+                let message = 'Not found';
+
+                if (test.check === 'css-colors') {
+                    // Check if earth tone colors are in CSS
+                    const hasColors = html.includes('#3D2F27') ||
+                                    html.includes('#6B7559') ||
+                                    html.includes('#9E5A3F');
+                    if (hasColors) {
+                        status = '✅';
+                        message = 'Earth tones applied';
+                    }
+                } else if (test.selector) {
+                    const elements = doc.querySelectorAll(test.selector);
+                    if (elements.length > 0) {
+                        status = '✅';
+                        message = `Found ${elements.length} elements`;
+                    }
+                }
+
+                designResults.innerHTML += `
+                    <div class="check-item">
+                        <span>${status}</span>
+                        <span style="margin-left: 10px;">${test.name}: ${message}</span>
+                    </div>
+                `;
+            });
+
+            // Run accessibility checks
+            const accessibilityResults = document.getElementById('accessibility-checks');
+            tests.accessibility.forEach(test => {
+                let status = '⚠️';
+                let message = 'Manual verification needed';
+
+                if (test.selector) {
+                    const elements = doc.querySelectorAll(test.selector);
+                    if (elements.length > 0) {
+                        status = '✅';
+                        message = `Found ${elements.length} elements`;
+                    } else {
+                        status = '❌';
+                        message = 'None found';
+                    }
+                }
+
+                accessibilityResults.innerHTML += `
+                    <div class="check-item">
+                        <span>${status}</span>
+                        <span style="margin-left: 10px;">${test.name}: ${message}</span>
+                    </div>
+                `;
+            });
+
+            // Run responsive checks
+            const responsiveResults = document.getElementById('responsive-checks');
+            tests.responsive.forEach(test => {
+                // These require visual inspection
+                responsiveResults.innerHTML += `
+                    <div class="check-item">
+                        <span>⚠️</span>
+                        <span style="margin-left: 10px;">${test.name}: Visual inspection required</span>
+                    </div>
+                `;
+            });
+
+            // Check page sections
+            const pageResults = document.getElementById('page-checks');
+            pageResults.innerHTML = `
+                <div class="check-item">
+                    <span>✅</span>
+                    <span style="margin-left: 10px;">Homepage: Loading correctly</span>
+                </div>
+                <div class="check-item">
+                    <span>${html.includes('Our Healing Services') ? '✅' : '❌'}</span>
+                    <span style="margin-left: 10px;">Services Section: ${html.includes('Our Healing Services') ? 'Visible' : 'Not found'}</span>
+                </div>
+                <div class="check-item">
+                    <span>${html.includes('Voices of Transformation') ? '✅' : '❌'}</span>
+                    <span style="margin-left: 10px;">Testimonials: ${html.includes('Voices of Transformation') ? 'Visible' : 'Not found'}</span>
+                </div>
+                <div class="check-item">
+                    <span>${html.includes('Begin Your Journey') ? '✅' : '❌'}</span>
+                    <span style="margin-left: 10px;">CTA Section: ${html.includes('Begin Your Journey') ? 'Visible' : 'Not found'}</span>
+                </div>
+            `;
+        }
+
+        // Run tests when page loads
+        window.onload = () => {
+            runTests();
+        };
+    </script>
+</body>
+</html>

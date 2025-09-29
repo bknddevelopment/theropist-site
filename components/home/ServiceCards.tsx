@@ -5,6 +5,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { User, Users, UserCheck, Sparkles, Clock, ArrowRight } from 'lucide-react'
 import { ParallaxWrapper } from '@/components/ui/ParallaxWrapper'
+import { getPlaceholderDataUrl } from '@/lib/utils/placeholder-images'
 
 const services = [
   {
@@ -12,7 +13,7 @@ const services = [
     title: 'Individual Therapy',
     description: 'Personalized one-on-one sessions tailored to your unique healing journey and personal growth goals.',
     icon: User,
-    image: 'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b',
+    image: getPlaceholderDataUrl(400, 300),
     features: ['60-90 minute sessions', 'Evidence-based approaches', 'Flexible scheduling'],
     price: 'From $180/session',
     color: 'sage',
@@ -22,7 +23,7 @@ const services = [
     title: 'Couples Counseling',
     description: 'Strengthen your relationship through compassionate guidance and proven therapeutic techniques.',
     icon: Users,
-    image: 'https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2',
+    image: getPlaceholderDataUrl(400, 300),
     features: ['90 minute sessions', 'Communication skills', 'Conflict resolution'],
     price: 'From $250/session',
     color: 'terracotta',
@@ -32,7 +33,7 @@ const services = [
     title: 'Group Therapy',
     description: 'Connect with others on similar journeys in a supportive, professionally facilitated environment.',
     icon: UserCheck,
-    image: 'https://images.unsplash.com/photo-1529156069898-49953e39b3ac',
+    image: getPlaceholderDataUrl(400, 300),
     features: ['8-10 participants', 'Weekly meetings', 'Themed groups'],
     price: 'From $80/session',
     color: 'forest',
@@ -42,7 +43,7 @@ const services = [
     title: 'Wellness Retreats',
     description: 'Immersive healing experiences combining therapy, mindfulness, and the beauty of Sonoma County.',
     icon: Sparkles,
-    image: 'https://images.unsplash.com/photo-1545389336-cf090694435e',
+    image: getPlaceholderDataUrl(400, 300),
     features: ['3-5 day programs', 'All-inclusive', 'Small groups'],
     price: 'From $2,500',
     color: 'sage',
