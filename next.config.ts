@@ -6,11 +6,11 @@ const nextConfig: NextConfig = {
   // Enable static exports for GitHub Pages
   output: 'export',
 
-  // Set the base path for GitHub Pages (will be /theropist-site in production)
-  basePath: isProd ? '/theropist-site' : '',
+  // Custom domain - no basePath needed
+  basePath: '',
 
-  // Asset prefix for proper loading on GitHub Pages
-  assetPrefix: isProd ? '/theropist-site/' : '',
+  // Custom domain - no assetPrefix needed
+  assetPrefix: '',
 
   // Image optimization for static export
   images: {
